@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Tracker</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="manifest" href="./manifest.json">
+</head>
+<body>
+
+<h1>🥚 Egg Tracker</h1>
+
+<section>
+    <h2>Add Production</h2>
+    <input id="prod-qty" type="number" placeholder="Eggs produced">
+    <input id="prod-date" type="date">
+    <button onclick="addProduction()">Add</button>
+</section>
+
+<section>
+    <h2>Add Sales</h2>
+    <input id="sale-buyer" placeholder="Buyer name">
+    <input id="sale-qty" type="number" placeholder="Eggs sold">
+    <input id="sale-price" type="number" placeholder="Total price">
+    <button onclick="addSale()">Add</button>
+</section>
+
+<section>
+    <h2>Inventory</h2>
+    <p id="stock">Loading...</p>
+</section>
+
+<script src="./app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js");
+}
+</script>
+
+</body>
+</html>
