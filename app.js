@@ -1,21 +1,54 @@
+// =======================================
+//  PWA UPDATE SYSTEM
+// =======================================
+
 let newWorker = null;
 
+// Register service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").then(reg => {
+
+        // Jika ada update ditemukan
         reg.addEventListener("updatefound", () => {
             newWorker = reg.installing;
 
             newWorker.addEventListener("statechange", () => {
-                if (newWorker.state === "installed" &&
-                    navigator.serviceWorker.controller) {
-                    // Versi baru tersedia
+                // SW lama sudah aktif, SW baru telah terinstall → update ready
+                if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
                     document.getElementById("applyUpdateBtn").style.display = "block";
                     document.getElementById("updateStatus").textContent = "Versi baru tersedia!";
                 }
             });
         });
     });
+
+    // Reload otomatis jika SW baru mengambil alih
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
+    });
 }
+
+// Tombol: Periksa Update
+document.getElementById("checkUpdateBtn").addEventListener("click", () => {
+    document.getElementById("updateStatus").textContent = "Memeriksa update…";
+
+    // Paksa fetch versi terbaru dari GitHub Pages
+    fetch("./index.html?cache=" + Date.now())
+        .then(() => {
+            document.getElementById("updateStatus").textContent =
+                "Jika ada versi baru, tombol Terapkan Update akan muncul.";
+        })
+        .catch(() => {
+            document.getElementById("updateStatus").textContent = "Gagal memeriksa.";
+        });
+});
+
+// Tombol: Terapkan Update
+document.getElementById("applyUpdateBtn").addEventListener("click", () => {
+    if (newWorker) {
+        newWorker.postMessage({ action: "skipWaiting" });
+    }
+});
 
 let db;
 const request = indexedDB.open('OrderDB',1);
