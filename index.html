@@ -135,31 +135,43 @@ if ('serviceWorker' in navigator) {
 </script>
 
 
-<div id="notifBox" class="notif-box" style="display:none;">
-  <h4 id="notifTitle"></h4>
-  <p id="notifMessage"></p>
+<div id="toast" class="toast">
+  <div class="toast-icon">✔️</div>
+  <div class="toast-text" id="toastMessage">Pesanan tersimpan!</div>
 </div>
 
 <style>
-.notif-box {
+.toast {
   position: fixed;
-  bottom: 20px;
+  bottom: -80px; /* mulai tersembunyi */
   left: 50%;
   transform: translateX(-50%);
-  background: #323232;
+  background: #28a745; /* hijau sukses */
   color: white;
-  padding: 14px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  z-index: 10000;
-  min-width: 220px;
-  text-align: center;
+  padding: 14px 18px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 230px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  font-size: 16px;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: bottom 0.4s ease, opacity 0.4s ease;
+  z-index: 9999;
 }
-.notif-box.show {
-  display: block;
+
+.toast.show {
+  bottom: 30px;  /* naik ke atas */
   opacity: 1;
+}
+
+.toast-icon {
+  font-size: 20px;
+}
+
+.toast-text {
+  flex: 1;
 }
 </style>
 
