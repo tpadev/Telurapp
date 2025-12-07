@@ -11,6 +11,13 @@ request.onsuccess = e => {
   renderOrders();
 };
 
+navigator.serviceWorker.addEventListener("controllerchange", () => {
+    showLocalNotification(
+        "Update Aplikasi",
+        "Aplikasi versi terbaru telah siap. Silakan muat ulang."
+    );
+});
+
 function saveMeta(k,v,cb){
   const tx = db.transaction('meta','readwrite');
   tx.objectStore('meta').put({key:k,value:v});
