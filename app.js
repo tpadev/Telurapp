@@ -69,8 +69,8 @@ request.onsuccess = e => {
 function setDefaultDates() {
     const today = new Date().toISOString().split("T")[0];
 
-    document.getElementById("tanggalOrder").value = today;
-    document.getElementById("tanggalAntar").value = today;
+    document.getElementById("orderDate").value = today;
+    document.getElementById("deliverDate").value = today;
 }
 
 // panggil saat halaman pertama kali load
