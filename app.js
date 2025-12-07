@@ -6,7 +6,7 @@ let newWorker = null;
 
 // Register service worker
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js?v=6").then(reg => {
+    navigator.serviceWorker.register("./sw.js").then(reg => {
 
         // Jika ada update ditemukan
         reg.addEventListener("updatefound", () => {
