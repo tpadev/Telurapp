@@ -81,7 +81,7 @@ const toggleHargaBtn = document.getElementById("toggleHargaBtn");
 
 toggleHargaBtn.addEventListener("click", () => {
     if (hargaSection.style.display === "none") {
-        hargaSection.style.display = "block";
+        hargaSection.style.display = "none";
         toggleHargaBtn.textContent = "Tampilkan harga Harga";
     } else {
         hargaSection.style.display = "block";
