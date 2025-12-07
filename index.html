@@ -6,6 +6,25 @@
 <title>Pencatat Pesanan Telur</title>
 <link rel="stylesheet" href="./style.css" />
 <link rel="manifest" href="./manifest.json" />
+<style>
+        #applyUpdateBtn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 10px;
+            display: none;
+            border-radius: 5px;
+        }
+        #checkUpdateBtn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+</style>
+
 </head>
 <body>
 <header>
@@ -97,11 +116,11 @@
     <div id="summary" class="summary"></div>
     <ul id="orders"></ul>
   </section>
-  
-  <button id="checkUpdateBtn">Periksa Update</button>
-  <button id="applyUpdateBtn" style="display:none;">Terapkan Update</button>
-  <p id="updateStatus"></p>
 </main>
+
+<button id="checkUpdateBtn">Periksa Update</button>
+<button id="applyUpdateBtn">Terapkan Update</button>
+<p id="updateStatus"></p>
 
 <footer>
   <p class="muted">Aplikasi offline — data tersimpan di perangkat Anda.</p>
