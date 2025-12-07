@@ -133,5 +133,36 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js');
 }
 </script>
+
+
+<div id="notifBox" class="notif-box" style="display:none;">
+  <h4 id="notifTitle"></h4>
+  <p id="notifMessage"></p>
+</div>
+
+<style>
+.notif-box {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #323232;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 10000;
+  min-width: 220px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.notif-box.show {
+  display: block;
+  opacity: 1;
+}
+</style>
+
+
 </body>
 </html>
