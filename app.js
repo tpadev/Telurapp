@@ -76,7 +76,7 @@ function setDefaultDates() {
 // panggil saat halaman pertama kali load
 document.addEventListener("DOMContentLoaded", setDefaultDates);
 
-const hargaSection = document.getElementByClass("hargaSection");
+const hargaSection = document.getElementByClass("price-row");
 const toggleHargaBtn = document.getElementById("toggleHargaBtn");
 
 toggleHargaBtn.addEventListener("click", () => {
