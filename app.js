@@ -1,3 +1,22 @@
+let newWorker = null;
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").then(reg => {
+        reg.addEventListener("updatefound", () => {
+            newWorker = reg.installing;
+
+            newWorker.addEventListener("statechange", () => {
+                if (newWorker.state === "installed" &&
+                    navigator.serviceWorker.controller) {
+                    // Versi baru tersedia
+                    document.getElementById("applyUpdateBtn").style.display = "block";
+                    document.getElementById("updateStatus").textContent = "Versi baru tersedia!";
+                }
+            });
+        });
+    });
+}
+
 let db;
 const request = indexedDB.open('OrderDB',1);
 request.onupgradeneeded = e => {
