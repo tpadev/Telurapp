@@ -143,9 +143,9 @@ if ('serviceWorker' in navigator) {
 <style>
 .toast {
   position: fixed;
-  bottom: -80px; /* mulai tersembunyi */
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%) scale(0.8);
   background: #28a745; /* hijau sukses */
   color: white;
   padding: 14px 18px;
@@ -162,7 +162,7 @@ if ('serviceWorker' in navigator) {
 }
 
 .toast.show {
-  bottom: 30px;  /* naik ke atas */
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
