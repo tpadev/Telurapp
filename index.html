@@ -34,6 +34,24 @@
 
 <main>
   <section class="card">
+    <h2>Daftar Harga (ubah jika perlu)</h2>
+    <button id="toggleHargaBtn" class="btn">Tampilkan Harga</button>      
+    <div id="hargaSection" class="price-row">
+      <label>Harga per Butir (Rp)
+        <input id="priceButir" type="number" value="2000" />
+      </label>
+      <label>Harga per Papan (Rp)
+        <input id="pricePapan" type="number" value="55000" />
+      </label>
+      <label>Harga per Ikat (Rp)
+        <input id="priceIkat" type="number" value="250000" />
+      </label>
+      <button id="savePrices" class="small">Simpan Harga</button>
+    </div>
+  </section>
+
+
+  <section class="card">
     <h2>Tambah Pesanan</h2>
     <label>Nama Pembeli
       <input id="buyer" placeholder="Nama pembeli" />
@@ -95,22 +113,7 @@
     </div>
   </section>
 
-  <section class="card">
-    <h2>Daftar Harga (ubah jika perlu)</h2>
-    <button id="toggleHargaBtn" class="btn">Tampilkan Harga</button>      
-    <div id="hargaSection" class="price-row">
-      <label>Harga per Butir (Rp)
-        <input id="priceButir" type="number" value="2000" />
-      </label>
-      <label>Harga per Papan (Rp)
-        <input id="pricePapan" type="number" value="55000" />
-      </label>
-      <label>Harga per Ikat (Rp)
-        <input id="priceIkat" type="number" value="250000" />
-      </label>
-      <button id="savePrices" class="small">Simpan Harga</button>
-    </div>
-  </section>
+  
 
   <section class="card">
     <h2>Daftar Pesanan</h2>
@@ -141,6 +144,11 @@ if ('serviceWorker' in navigator) {
 </div>
 
 <style>
+
+.price-row {
+  display: none;
+}
+
 .toast {
   position: fixed;
   top: 50%;
