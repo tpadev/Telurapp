@@ -76,6 +76,22 @@ function setDefaultDates() {
 // panggil saat halaman pertama kali load
 document.addEventListener("DOMContentLoaded", setDefaultDates);
 
+const hargaSection = document.getElementByClass("hargaSection");
+const toggleHargaBtn = document.getElementById("toggleHargaBtn");
+
+toggleHargaBtn.addEventListener("click", () => {
+    if (hargaSection.style.display === "none") {
+        hargaSection.style.display = "block";
+        toggleHargaBtn.textContent = "Sembunyikan Harga";
+    } else {
+        hargaSection.style.display = "none";
+        toggleHargaBtn.textContent = "Tampilkan Harga";
+    }
+});
+
+
+
+
 function saveMeta(k,v,cb){
   const tx = db.transaction('meta','readwrite');
   tx.objectStore('meta').put({key:k,value:v});
