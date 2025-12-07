@@ -191,43 +191,67 @@ function addOrder(){
   };
 }
 
-function renderOrders(){
+function renderOrders() {
   const list = document.getElementById('orders');
-  list.innerHTML='';
+  list.innerHTML = '';
 
-  const tx = db.transaction('orders','readonly');
+  const tx = db.transaction('orders', 'readonly');
   const req = tx.objectStore('orders').getAll();
-  req.onsuccess = ()=>{
-    const data = req.result.sort((a,b)=>b.created - a.created);
-    if(data.length===0){
+
+  req.onsuccess = () => {
+    const data = req.result.sort((a, b) => b.created - a.created);
+
+    if (data.length === 0) {
       list.innerHTML = '<div class="empty">Belum ada pesanan</div>';
-      document.getElementById('summary').innerHTML='';
+      document.getElementById('summary').innerHTML = '';
       return;
     }
-    let totalRevenue=0, totalUnpaid=0, totalOrders=data.length;
-    let cash=0, transfer=0;
-    data.forEach(item=>{
-      if(item.status==='lunas') {
+
+    let totalRevenue = 0, totalUnpaid = 0, totalOrders = data.length;
+    let cash = 0, transfer = 0;
+
+    data.forEach(item => {
+      if (item.status === 'lunas') {
         totalRevenue += item.total;
-        if(item.paymentMethod==='cash') cash += item.total;
+        if (item.paymentMethod === 'cash') cash += item.total;
         else transfer += item.total;
       } else {
         totalUnpaid += item.total;
       }
+
       const li = document.createElement('li');
-      li.className='order-item';
+      li.className = 'order-item';
+
       li.innerHTML = `
         <div class="order-left">
-          <strong>${escapeHtml(item.buyer)}</strong> • ${escapeHtml(item.phone)}<br/>
-          <small>Order: ${item.orderDate} • Antar: ${item.deliverDate || '-'} • ${item.quantity} ${item.unit}</small>
-          <div>Rp ${numberWithCommas(item.total)} • ${escapeHtml(item.note)}</div>
+          <div class="order-top">
+            <strong>${escapeHtml(item.buyer)}</strong>
+            <span class="phone">${escapeHtml(item.phone)}</span>
+          </div>
+
+          <div class="order-info">
+            <span>${item.orderDate}</span> • 
+            <span>Antar: ${item.deliverDate || '-'}</span> • 
+            <span>${item.quantity} ${item.unit}</span>
+          </div>
+
+          <div class="order-total">
+            Rp ${numberWithCommas(item.total)}
+          </div>
+
+          ${item.note ? `<div class="order-note">📝 ${escapeHtml(item.note)}</div>` : ''}
         </div>
+
         <div class="order-right">
-          <div class="badge ${item.status}">${item.status==='lunas' ? 'Lunas' : 'Belum Lunas'}</div>
-          <button class="edit" data-id="${item.id}">Edit</button>
-          <button class="del" data-id="${item.id}">Hapus</button>
+          <div class="badge ${item.status}">
+            ${item.status === 'lunas' ? 'Lunas' : 'Belum'}
+          </div>
+
+          <button class="edit icon-btn" data-id="${item.id}">✏️</button>
+          <button class="del icon-btn" data-id="${item.id}">🗑️</button>
         </div>
       `;
+
       list.appendChild(li);
     });
 
@@ -235,16 +259,16 @@ function renderOrders(){
       <div class="card"><strong>Total Pesanan</strong><div> ${totalOrders} </div></div>
       <div class="card"><strong>Pemasukan Cash</strong><div> Rp ${numberWithCommas(cash)} </div></div>
       <div class="card"><strong>Pemasukan Transfer</strong><div> Rp ${numberWithCommas(transfer)} </div></div>
-      <div class="card"><strong>Total Pemasukan</strong><div> Rp ${numberWithCommas(cash+transfer)} </div></div>
+      <div class="card"><strong>Total Pemasukan</strong><div> Rp ${numberWithCommas(totalRevenue)} </div></div>
       <div class="card"><strong>Total Piutang</strong><div> Rp ${numberWithCommas(totalUnpaid)} </div></div>
     `;
 
-    Array.from(document.querySelectorAll('button.edit')).forEach(b=>{
-      b.addEventListener('click', ()=>{ editOrder(Number(b.dataset.id)); });
-    });
-    Array.from(document.querySelectorAll('button.del')).forEach(b=>{
-      b.addEventListener('click', ()=>{ deleteOrder(Number(b.dataset.id)); });
-    });
+    document.querySelectorAll('button.edit').forEach(b =>
+      b.addEventListener('click', () => editOrder(Number(b.dataset.id)))
+    );
+    document.querySelectorAll('button.del').forEach(b =>
+      b.addEventListener('click', () => deleteOrder(Number(b.dataset.id)))
+    );
   };
 }
 
