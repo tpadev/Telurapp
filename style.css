@@ -19,3 +19,87 @@ button.small{padding:8px;width:120px}
 .summary{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .summary .card{flex:1;padding:8px}
 .empty{color:#999;padding:12px}
+
+/* --- Compact Order Card View --- */
+.order-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-size: 14px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.order-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.order-phone {
+  font-size: 12px;
+  color: #555;
+}
+
+.order-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.order-info div {
+  background: #f9f9f9;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.order-label {
+  font-size: 11px;
+  color: #777;
+}
+
+.order-value {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.order-status {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-belum {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-lunas {
+  background: #d4edda;
+  color: #155724;
+}
+
+.order-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.order-actions button {
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
