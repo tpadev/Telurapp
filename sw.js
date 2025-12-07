@@ -1,4 +1,4 @@
-const CACHE_NAME = "egg-app-v1";
+const CACHE_NAME = "egg-app-v2";
 const FILES = [
     "./",
     "./index.html",
