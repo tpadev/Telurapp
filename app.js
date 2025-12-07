@@ -144,7 +144,7 @@ document.getElementById('savePrices').addEventListener('click', ()=>{
     ikat: Number(document.getElementById('priceIkat').value)||0
   };
   saveMeta('prices',p,()=> {
-    showNotification('Harga tersimpan','Daftar harga berhasil disimpan.');
+    showToast('Harga tersimpan','Daftar harga berhasil disimpan.');
   });
   updatePriceField();
 });
@@ -180,7 +180,7 @@ function addOrder(){
   tx.objectStore('orders').add({buyer,phone,orderDate,deliverDate,unit,quantity,price,total,paymentMethod,status,note,created:Date.now()});
   tx.oncomplete = ()=> {
     renderOrders();
-    showNotification('Pesanan tersimpan', 'Pesanan berhasil ditambahkan.');
+    showToast('Pesanan tersimpan', 'Pesanan berhasil ditambahkan.');
     document.getElementById('buyer').value='';
     document.getElementById('phone').value='';
     document.getElementById('note').value='';
