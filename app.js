@@ -281,6 +281,19 @@ function deleteOrder(id){
 function numberWithCommas(x){ return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
 function escapeHtml(s){ return String(s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  const msg = document.getElementById("toastMessage");
+
+  msg.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500); // tampil 2.5 detik
+}
+
 function showNotification(title, body){
   if(!('Notification' in window)) return;
   if(Notification.permission !== 'granted') return;
