@@ -103,3 +103,52 @@ button.small{padding:8px;width:120px}
   font-size: 12px;
   border-radius: 6px;
 }
+
+.order-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.order-left {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.order-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.order-info {
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.order-total {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.order-note {
+  font-size: 0.75rem;
+  color: #444;
+}
+
+.order-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.icon-btn {
+  font-size: 1rem;
+  background: none;
+  border: none;
+  padding: 4px;
+}
