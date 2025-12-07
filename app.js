@@ -66,6 +66,16 @@ request.onsuccess = e => {
   }
 };
 
+function setDefaultDates() {
+    const today = new Date().toISOString().split("T")[0];
+
+    document.getElementById("tanggalOrder").value = today;
+    document.getElementById("tanggalAntar").value = today;
+}
+
+// panggil saat halaman pertama kali load
+document.addEventListener("DOMContentLoaded", setDefaultDates);
+
 function saveMeta(k,v,cb){
   const tx = db.transaction('meta','readwrite');
   tx.objectStore('meta').put({key:k,value:v});
