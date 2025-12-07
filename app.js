@@ -81,11 +81,11 @@ const toggleHargaBtn = document.getElementById("toggleHargaBtn");
 
 toggleHargaBtn.addEventListener("click", () => {
     if (hargaSection.style.display === "none") {
-        hargaSection.style.display = "none";
-        toggleHargaBtn.textContent = "Tampilkan harga Harga";
-    } else {
         hargaSection.style.display = "block";
         toggleHargaBtn.textContent = "Sembunyikan Harga";
+    } else {
+        hargaSection.style.display = "none";
+        toggleHargaBtn.textContent = "Tampilkan Harga";
     }
 });
 
