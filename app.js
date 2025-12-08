@@ -191,6 +191,18 @@ function addOrder(){
   };
 }
 
+function formatDate(d) {
+  if (!d) return "-";
+  const parts = d.split("-"); // d = yyyy-mm-dd
+  if (parts.length !== 3) return d;
+
+  const yy = parts[0].slice(2); // ambil 2 digit terakhir tahun
+  const mm = parts[1];
+  const dd = parts[2];
+
+  return `${dd}-${mm}-${yy}`;
+}
+
 function renderOrders() {
   const list = document.getElementById('orders');
   list.innerHTML = '';
@@ -230,8 +242,8 @@ function renderOrders() {
           </div>
 
           <div class="order-info">
-            <span>${item.orderDate}</span> • 
-            <span>Antar: ${item.deliverDate || '-'}</span> • 
+            <span>${formatDate(item.orderDate)}</span> • 
+            <span>Antar: ${formatDate(item.deliverDate || '-')}</span> • 
             <span>${item.quantity} ${item.unit}</span>
           </div>
 
